@@ -12,5 +12,9 @@ module.exports = {
     });
 
     return person.email;
+  },
+
+  async getAll() {
+    return connection(table).select('email', 'name', 'nickname', 'photo');
   }
 }
