@@ -1,5 +1,5 @@
 const service_person = require('../services/personService');
-const validator =   require('./validators/person_validetor');
+const validator =   require('./validators/person_validator');
 const error = require('../err/error');
 
 const controller =  {
