@@ -10,8 +10,26 @@ module.exports = {
       password: person.password,
       photo: person.photo
     });
+  },
 
-    return person.email;
+  async getFindByNickName(nickname) {
+    return connection(table)
+      .select('email', 'name', 'nickname', 'photo', 'id')
+      .where('nickname', nickname)
+      .first();
+  },
+
+  async update(id, person) {
+    return connection(table)
+    .update(person)
+    .where('id', id);
+  },
+
+  async getFindById(id) {
+    return connection(table)
+      .select('email', 'name', 'nickname', 'photo', 'id')
+      .where('id', id)
+      .first();
   },
 
   async getAll() {
