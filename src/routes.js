@@ -17,6 +17,7 @@ routes.post('/login', controller_login.login);
 
 // Follow
 routes.post('/follow', controller_follow.addFolloww);
+routes.delete('/follow', controller_follow.removeFollow);
 
 
 module.exports = routes;
