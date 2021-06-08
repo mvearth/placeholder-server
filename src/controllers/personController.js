@@ -10,7 +10,12 @@ const controller =  {
       await service_person.createPerson(person);
       return res.json();
     } catch (err) {
-      this.getError(err, res);
+      if(err.isErr) {
+        const error = err.toJson();
+        return res.status(error.status).json(error);
+      }
+  
+      return res.status(500).json(error.getError().toJson());
     }
   },
 
@@ -21,25 +26,21 @@ const controller =  {
       await service_person.updatePerson(id, person);
       return res.json();
     } catch (err) {
-      this.getError(err, res);
+      if(err.isErr) {
+        const error = err.toJson();
+        return res.status(error.status).json(error);
+      }
+  
+      return res.status(500).json(error.getError().toJson());
     }
   },
 
   async getPerson(req, res) {
-    return res.json(await service_person.getPerson(req.params.nickname));   
+    return res.json(await service_person.getPersonFromNickname(req.params.nickname));   
   },
 
   async getAllPerson(req, res) {
     return res.json(await service_person.getAllPerson());
-  },
-
-  getError(err, res) {
-    if(err.isErr) {
-      const error = err.toJson();
-      return res.status(error.status).json(error);
-    }
-
-    return res.status(500).json(error.getError().toJson());
   }
 }
 
