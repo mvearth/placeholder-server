@@ -25,6 +25,13 @@ module.exports = {
     .where('id', id);
   },
 
+  async get(where) {
+    return connection(table)
+    .select('email', 'name', 'nickname', 'photo', 'id')
+    .where(where)
+    .first();
+  },
+
   async getFindById(id) {
     return connection(table)
       .select('email', 'name', 'nickname', 'photo', 'id')
