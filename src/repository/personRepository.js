@@ -12,6 +12,10 @@ module.exports = {
     });
   },
 
+  async delete(id) {
+    await connection(table).where('id', id).del();
+  },
+
   async getFindByNickName(nickname) {
     return connection(table)
       .select('email', 'name', 'nickname', 'photo', 'id')

@@ -35,6 +35,20 @@ const controller =  {
     }
   },
 
+  async deletePerson(req,res) {
+    try {
+      await service_person.deletePerson(req.params.id);
+      return res.json();
+    } catch (err) {
+      if(err.isErr) {
+        const error = err.toJson();
+        return res.status(error.status).json(error);
+      }
+  
+      return res.status(500).json(error.getError().toJson());
+    }
+  },
+
   async getPerson(req, res) {
     return res.json(await service_person.getPersonFromNickname(req.params.nickname));   
   },

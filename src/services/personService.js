@@ -10,6 +10,10 @@ const service = {
     await repository_person.create(person);
   },
 
+  async deletePerson(id) {
+    await repository_person.delete(id);
+  },
+
   async updatePerson(id, person) {
     const personOld = await repository_person.getFindById(id);
 
