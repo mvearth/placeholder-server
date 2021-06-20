@@ -4,7 +4,7 @@ const error = require('../err/error');
 const service_follow = require('../services/followService');
 
 const controller =  {
-  async addFolloww(req,res) {
+  async addFollow(req,res) {
     try {
       const body = req.body;
       validator.validateEmail(body);
