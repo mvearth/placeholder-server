@@ -23,4 +23,8 @@ routes.delete('/follow', controller_follow.removeFollow);
 // Publisher
 routes.post('/publisher', controller_publisher.postMessage);
 routes.get('/publisher', controller_publisher.getAllMessage);
+
+routes.get('/all/publisher', controller_publisher.getAll);
+routes.delete('/publisher', controller_publisher.getDeleteMessage);
+
 module.exports = routes;

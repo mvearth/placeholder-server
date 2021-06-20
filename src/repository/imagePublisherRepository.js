@@ -1,5 +1,5 @@
 const connection = require('../database/connection');
-const table = 'image';
+const table = 'image_publisher';
 
 module.exports = {
   async create(id_publisher, image) {

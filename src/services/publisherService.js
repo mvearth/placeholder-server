@@ -1,5 +1,5 @@
 const repository_publisher = require('../repository/publisherRepository');
-const repository_image = require('../repository/imageRepository');
+const repository_image_publisher = require('../repository/imagePublisherRepository');
 const error = require('../err/error');
 
 const service = {
@@ -7,19 +7,19 @@ const service = {
     const id_post = await repository_publisher.create(publisher);
     if(publisher.images) {
       publisher.images.map(async image => {
-        await repository_image.create(id_post, image);
+        await repository_image_publisher.create(id_post, image);
       });
     }
   },
+  async getPublisherFromEmailAndType(email, suggestion_type) {
+    return await repository_publisher.getPublisherFromEmailAndType(email, suggestion_type);
+  },
   async getAll() {
-    const posts = await repository_publisher.getAll();
-    if(posts) {
-      posts.map(async post => {
-        post.images = await repository_image.getById(post.id);
-      });
-    }
+    return repository_publisher.getAll();
+  },
 
-    return posts;
+  async delete(id) {
+    await repository_publisher.delete(id);
   }
 }
 

@@ -11,5 +11,8 @@ module.exports = {
     await connection(table).del().where({
       email_follower, email_following
     });
+  },
+  async getAll(email_follower) {
+    return connection(table).where({ email_follower }).select('*');
   }
 }
