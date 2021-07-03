@@ -1,11 +1,16 @@
 const repository_person = require('../repository/personRepository');
 const error = require('../err/error');
+const { getSearchPersons } = require('../repository/personRepository');
 
 const service = {
   async createPerson(person) {
-    const person_db = await repository_person.getFindByNickName(person.nickname);
-    if(person_db && person_db.nickname) {
-      return;
+    const person_db_by_nickname = await repository_person.getFindByNickName(person.nickname);
+    const person_db_by_email = await repository_person.getFindByEmail(person.email);
+    if(person_db_by_nickname 
+        && person_db_by_nickname.nickname 
+        && person_db_by_email
+        && person_db_by_email.email) {
+          throw error.getError('user already exists', 409, 'CONFLICT');
     }
     await repository_person.create(person);
   },
@@ -40,6 +45,10 @@ const service = {
 
   async getPerson(where) {
     return repository_person.get(where);
+  },
+
+  async getSearchPersons(value){
+    return repository_person.getSearchPersons(value);
   },
 
   async getAllPerson() {

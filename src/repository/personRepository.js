@@ -1,3 +1,4 @@
+const { getSearchPersons } = require('../controllers/personController');
 const connection = require('../database/connection');
 const table = 'person';
 
@@ -23,6 +24,13 @@ module.exports = {
       .first();
   },
 
+  async getFindByEmail(email) {
+    return connection(table)
+      .select('email', 'name', 'nickname', 'photo', 'id')
+      .where('email', email)
+      .first();
+  },
+
   async update(id, person) {
     return connection(table)
     .update(person)
@@ -41,6 +49,14 @@ module.exports = {
       .select('email', 'name', 'nickname', 'photo', 'id')
       .where('id', id)
       .first();
+  },
+
+  async getSearchPersons(value) {
+    return connection(table)
+      .select('email', 'name', 'nickname', 'photo', 'id')
+      .orWhere('name', 'like', `%${value}%`)
+      .orWhere('nickname', 'like', `%${value}%`)
+      .limit(50);
   },
 
   async getAll() {

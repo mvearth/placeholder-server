@@ -53,6 +53,10 @@ const controller =  {
     return res.json(await service_person.getPersonFromNickname(req.params.nickname));   
   },
 
+  async getSearchPersons(req, res) {
+    return res.json(await service_person.getSearchPersons(req.params.value));   
+  },
+
   async getAllPerson(req, res) {
     return res.json(await service_person.getAllPerson());
   }

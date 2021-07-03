@@ -12,6 +12,7 @@ routes.post('/person/:id', controller_person.updatePerson);
 routes.get('/person', controller_person.getAllPerson);
 routes.get('/person/:nickname', controller_person.getPerson);
 routes.delete('/person/:id', controller_person.deletePerson);
+routes.get('/person/search/:value', controller_person.getSearchPersons);
 
 // Login
 routes.post('/login', controller_login.login);
