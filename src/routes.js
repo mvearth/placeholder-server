@@ -20,6 +20,8 @@ routes.post('/login', controller_login.login);
 // Follow
 routes.post('/follow', controller_follow.addFollow);
 routes.delete('/follow', controller_follow.removeFollow);
+routes.get('/followings/:email', controller_follow.getFollowings);
+routes.get('/followers/:email', controller_follow.getFollowers);
 
 // Publisher
 routes.post('/publisher', controller_publisher.postMessage);

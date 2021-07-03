@@ -14,5 +14,11 @@ module.exports = {
   },
   async getAll(email_follower) {
     return connection(table).where({ email_follower }).select('*');
+  },
+  async getEmailFollowings(email_follower){
+    return connection(table).where('email_follower', email_follower).select('email_following');
+  },
+  async getEmailFollowers(email_following){
+    return connection(table).where('email_following', email_following).select('email_follower');
   }
 }

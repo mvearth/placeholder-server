@@ -43,6 +43,10 @@ const service = {
     return repository_person.getFindByNickName(nickname);
   },
 
+  async getPersonByEmail(email){
+    return repository_person.getFindByEmail(email);
+  },
+
   async getPerson(where) {
     return repository_person.get(where);
   },
