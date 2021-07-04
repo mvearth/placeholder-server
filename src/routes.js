@@ -25,7 +25,7 @@ routes.get('/followers/:email', controller_follow.getFollowers);
 
 // Publisher
 routes.post('/publisher', controller_publisher.postMessage);
-routes.get('/publisher', controller_publisher.getAllMessage);
+routes.get('/publisher/:email', controller_publisher.getAllMessage);
 
 routes.get('/all/publisher', controller_publisher.getAll);
 routes.delete('/publisher', controller_publisher.getDeleteMessage);

@@ -17,7 +17,7 @@ const controller =  {
   },
   async getAllMessage(req,res) {
     try {
-      const posts = await service.getPublisherFromEmailAndType(req.body.email, req.body.suggestion_type);
+      const posts = await service.getPublisherFromEmail(req.params.email);
       return res.json(posts);
     } catch (err) {
       if(err.isErr) {

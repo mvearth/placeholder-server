@@ -14,6 +14,9 @@ const service = {
   async getPublisherFromEmailAndType(email, suggestion_type) {
     return await repository_publisher.getPublisherFromEmailAndType(email, suggestion_type);
   },
+  async getPublisherFromEmail(email) {
+    return await repository_publisher.getPublisherFromEmail(email);
+  },
   async getAll() {
     return repository_publisher.getAll();
   },
