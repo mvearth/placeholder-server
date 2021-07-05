@@ -35,8 +35,8 @@ module.exports = {
     return connection(table).select('*');
   },
 
-  async getPublisherFromFollowing(email_following, suggestion_type) {
-    const person = await connection('follow').where({ email_following }).select('email_following');
+  async getPublisherFromFollowing(email_follower, suggestion_type) {
+    const person = await connection('follow').where('email_follower', email_follower).select('email_following');
     const email_person = person.map(p => p.email_following);
     return connection(table).whereIn('email', email_person).where({ suggestion_type })
       .join('image_publisher as ip', 'publisher.id', '=', 'ip.id')
