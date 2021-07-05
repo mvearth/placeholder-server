@@ -2,7 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('publisher', function(table) {
     table.increments();
-    table.string('descritpion');
+    table.string('description');
     table.enum('suggestion_type', ['BOOK', 'SONG','MOVIE_SERIE', 'OTHER']);
     table.string('title');
     table.string('author');

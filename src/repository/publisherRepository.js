@@ -4,7 +4,7 @@ const table = 'publisher';
 module.exports = {
   async create(post) {
     return connection(table).insert({
-      descritpion: post.description,
+      description: post.description,
       email: post.email,
       suggestion_type: post.suggestion_type,
       title: post.title,
@@ -13,7 +13,7 @@ module.exports = {
       artist: post.artist,
       release_date: post.release_date,
       publisher: post.publisher,
-      created_at: new Date().toString()
+      created_at: new Date().getTime()
     });
   },
 
@@ -35,11 +35,19 @@ module.exports = {
     return connection(table).select('*');
   },
 
-  async getPublisherFromEmailAndType(email_follower, suggestion_type) {
-    const person = await connection('follow').where({ email_follower }).select('email_following');
+  async getPublisherFromFollowing(email_following, suggestion_type) {
+    const person = await connection('follow').where({ email_following }).select('email_following');
     const email_person = person.map(p => p.email_following);
     return connection(table).whereIn('email', email_person).where({ suggestion_type })
       .join('image_publisher as ip', 'publisher.id', '=', 'ip.id')
+      .select('*');
+
+    // join('authors as author1', 'books.author_name', '=', 'author1.name')
+  },
+
+  async getPublisherFromEmailAndType(email, suggestion_type) {
+    return connection(table).where('email', email).andWhere('suggestion_type', suggestion_type)
+      .leftJoin('image_publisher as ip', 'publisher.id', '=', 'ip.id_publisher')
       .select('*');
 
     // join('authors as author1', 'books.author_name', '=', 'author1.name')
