@@ -8,7 +8,7 @@ const routes = express.Router();
 
 // Person
 routes.post('/person', controller_person.createPerson);
-routes.post('/person/:id', controller_person.updatePerson);
+routes.put('/person/:id', controller_person.updatePerson);
 routes.get('/person', controller_person.getAllPerson);
 routes.get('/person/:nickname', controller_person.getPerson);
 routes.delete('/person/:id', controller_person.deletePerson);
