@@ -8,7 +8,7 @@ const controller =  {
       const person = req.body;
       validator.validateCreatePerson(person);
       await service_person.createPerson(person);
-      return res.json();
+      return res.json('OK');
     } catch (err) {
       if(err.isErr) {
         const error = err.toJson();
