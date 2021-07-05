@@ -27,7 +27,19 @@ const controller =  {
       return res.status(500).json(error.getError().toJson());
     }
   },
-  async getAllFollowingMessage(req,res) {
+  async getRandomFollowingSuggestion(req,res) {
+    try {
+      const posts = await service.getPublisherFromRandomFollowing(req.query.email, req.query.suggestion_type);
+      return res.json(posts[0]);
+    } catch (err) {
+      if(err.isErr) {
+        const error = err.toJson();
+        return res.status(error.status).json(error);
+      }
+      return res.status(500).json(error.getError().toJson());
+    }
+  },
+  async getAllFollowingSuggestions(req,res) {
     try {
       const posts = await service.getPublisherFromFollowing(req.query.email, req.query.suggestion_type);
       return res.json(posts);

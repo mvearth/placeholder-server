@@ -59,5 +59,17 @@ module.exports = {
       .select('*');
 
     // join('authors as author1', 'books.author_name', '=', 'author1.name')
-  }
+  },
+
+  async getPublisherFromRandomFollowing(email_follower, suggestion_type) {
+    const person = await connection('follow').where('email_follower', email_follower).select('email_following');
+    const email_person = person.map(p => p.email_following);
+    return connection(table).whereIn('email', email_person).where({ suggestion_type })
+      .orderByRaw('RANDOM()')
+      .join('image_publisher as ip', 'publisher.id', '=', 'ip.id')
+      .select('*')
+      .limit(1);
+
+    // join('authors as author1', 'books.author_name', '=', 'author1.name')
+  },
 }

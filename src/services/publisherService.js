@@ -15,6 +15,9 @@ const service = {
   async getPublisherFromFollowing(email, suggestion_type) {
     return await repository_publisher.getPublisherFromFollowing(email, suggestion_type);
   },
+  async getPublisherFromRandomFollowing(email, suggestion_type) {
+    return await repository_publisher.getPublisherFromRandomFollowing(email, suggestion_type);
+  },
   async getPublisherFromEmail(email) {
     return await repository_publisher.getPublisherFromEmail(email);
   },
